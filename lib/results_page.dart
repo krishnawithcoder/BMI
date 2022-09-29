@@ -2,9 +2,17 @@ import 'package:bmiclculater/constent.dart';
 import 'package:bmiclculater/reusible_card.dart';
 import 'package:flutter/material.dart';
 import 'input_paga.dart';
+import 'bottom_buttom.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  ResultPage(
+      {required this.bmiResult,
+      required this.resultText,
+      required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +43,27 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Normal',
+                    resultText.toUpperCase(),
                     style: resultTextStyle,
                   ),
                   Text(
-                    '18.9',
+                    bmiResult,
                     style: BMITextStyle,
                   ),
                   Text(
-                    'Your BMI result is quite low, you should eat more! ',
+                    interpretation,
                     textAlign: TextAlign.center,
                     style: BodyTextStyle,
                   ),
                   BottomButton(
-                    buttonTitlle: 'RE CALCULATE',
+                    buttonTitlle: 'CALCULATE',
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => InputPage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InputPage(),
+                        ),
+                      );
                     },
                   ),
                 ],
